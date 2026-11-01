@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>CLAMP — Multidisciplinary Visual & Motion Design Studio</title>
+  <meta name="description" content="Clamp is an independent creative studio and visual lab crafting high-impact digital experiences, kinetic identities, tactile web systems, and 3D visual worlds.">
+  <meta name="keywords" content="Clamp, 3D Design, Motion Design, Creative Direction, Visual Identity, WebGL, Interactive Portfolio">
+  
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CLAMP — Multidisciplinary Visual & Motion Design Studio">
+  <meta property="og:description" content="A collection of visual works, kinetic identities, and 3D tactile experiences.">
+  <meta property="og:image" content="assets/work-abyss-main.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CLAMP — Visual Studio">
+  <meta name="twitter:description" content="Multidisciplinary motion and 3D design studio.">
+  <meta name="twitter:image" content="assets/work-abyss-main.jpg">
+
+  <link rel="icon" type="image/png" href="assets/clamp-carabiner.png">
+
+  <!-- Google Fonts: Space Grotesk, Fragment Mono, Inter, Caveat (handwritten) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fragment+Mono:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="index.css">
+</head>
+<body class="theme-dark">
+  <!-- Subtle Industrial Noise Canvas Background -->
+  <canvas id="noiseCanvas" class="noise-overlay" aria-hidden="true"></canvas>
+
+  <!-- Sticky Top Navigation -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <div class="brand-group">
+        <a href="#hero" class="brand-logo" id="logoLink" aria-label="Clamp Homepage">
+          <span class="logo-text">CLAMP</span>
+        </a>
+      </div>
+
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="#hero" class="nav-link active" data-section="hero">HOME</a>
+        <a href="#dossier" class="nav-link" data-section="dossier">DOSSIER</a>
+        <a href="#featured" class="nav-link" data-section="featured">WORKS</a>
+        <a href="#archive" class="nav-link" data-section="archive">ARCHIVE</a>
+        <a href="#studio" class="nav-link" data-section="studio">STUDIO</a>
+        <a href="#contact" class="nav-link" data-section="contact">CONTACT</a>
+      </nav>
+
+      <div class="header-controls">
+        <button id="soundToggleBtn" class="control-btn" aria-label="Toggle sound effects" title="Toggle audio feedback">
+          <svg class="sound-icon sound-on" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <svg class="sound-icon sound-off hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+          <span class="control-label" id="soundStatusText">AUDIO ON</span>
+        </button>
+
+        <a href="#contact" class="cta-pill" id="headerContactCta">GET IN TOUCH</a>
+
+        <!-- Mobile & Tablet Hamburger Button -->
+        <button id="mobileMenuToggle" class="mobile-menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileNavDrawer">
+          <span class="hamburger-box">
+            <span class="hamburger-line top-line"></span>
+            <span class="hamburger-line mid-line"></span>
+            <span class="hamburger-line bot-line"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile & Tablet Slide-Down Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-header">
+        <div class="mobile-nav-brand">
+          <span class="mobile-nav-logo">CLAMP</span>
+          <span class="mobile-nav-tag">INDEX // 2026</span>
+        </div>
+        <button class="mobile-nav-close" id="mobileNavCloseBtn" aria-label="Close navigation menu">&times;</button>
+      </div>
+
+      <nav class="mobile-nav-links" aria-label="Mobile Navigation Menu">
+        <a href="#hero" class="mobile-nav-link active" data-section="hero">
+          <span class="mn-num">01</span>
+          <span class="mn-title">HOME</span>
+          <span class="mn-arrow">→</span>
+        </a>
+        <a href="#dossier" class="mobile-nav-link" data-section="dossier">
+          <span class="mn-num">02</span>
+          <span class="mn-title">DOSSIER</span>
+          <span class="mn-arrow">→</span>
+        </a>
+        <a href="#featured" class="mobile-nav-link" data-section="featured">
+          <span class="mn-num">03</span>
+          <span class="mn-title">FEATURED WORKS</span>
+          <span class="mn-arrow">→</span>
+        </a>
+        <a href="#archive" class="mobile-nav-link" data-section="archive">
+          <span class="mn-num">04</span>
+          <span class="mn-title">THE ARCHIVE (24)</span>
+          <span class="mn-arrow">→</span>
+        </a>
+        <a href="#studio" class="mobile-nav-link" data-section="studio">
+          <span class="mn-num">05</span>
+          <span class="mn-title">STUDIO PROFILE</span>
+          <span class="mn-arrow">→</span>
+        </a>
+        <a href="#contact" class="mobile-nav-link" data-section="contact">
+          <span class="mn-num">06</span>
+          <span class="mn-title">CONTACT &amp; INQUIRIES</span>
+          <span class="mn-arrow">→</span>
+        </a>
+      </nav>
+
+      <div class="mobile-nav-footer">
+        <div class="mobile-status-row">
+          <span class="dot-live"></span>
+          <span class="mobile-status-text">AVAILABLE FOR COMMISSIONS // 2026</span>
+        </div>
+        <div class="mobile-actions-row">
+          <a href="#contact" class="mobile-cta-btn" id="mobileMenuContactBtn">START A PROJECT ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Award / Nominee Floating Badge -->
+  <aside class="award-ribbon" aria-label="Site recognition badge">
+    <div class="award-box">
+      <span class="award-letter">W.</span>
+      <span class="award-text">Nominee</span>
+    </div>
+  </aside>
+
+  <main id="mainContent">
+    <!-- SECTION 1: HERO WITH CLAMP KEYCHAIN -->
+    <section class="hero-section" id="hero" aria-label="Hero Section">
+      <div class="hero-top-bar">
+        <span class="hero-tag-left">A COLLECTION OF VISUAL WORKS</span>
+        <div class="hero-middle-hint">
+          <span class="hint-bullet">•</span>
+          <span class="hint-text" id="heroHintText">DRAG CHARMS TO SWING</span>
+        </div>
+        <span class="hero-tag-right">CLAMP LABS · 2026</span>
+      </div>
+
+      <!-- The Carabiner & Hanging Acrylic Charms Keychain Stage -->
+      <div class="keychain-stage" id="keychainStage" aria-label="Interactive Clamp and Charms Keychain">
+        <div class="keychain-assembly" id="keychainAssembly">
+          
+          <!-- Base Carabiner Clamp Hanging at Top Center -->
+          <div class="clamp-base" id="clampBase">
+            <img src="assets/clamp-carabiner.png" alt="Metallic Carabiner Clamp Keyring" class="clamp-image" draggable="false">
+          </div>
+
+          <!-- Hanging Charms Container (all pivoting around 50% 34.33% = 600px, 412px) -->
+          <div class="charms-cluster" id="charmsCluster">
+            
+            <!-- Charm 06: 3D Tech Charm (Back layer) -->
+            <div class="charm-item" id="charm-3dtech" data-id="3dtech" data-index="5" data-name="3D Tech Works" data-resting="24" role="button" tabindex="0" aria-label="3D Tech Charm">
+              <img src="assets/charm-3dtech-06.png" alt="Clear 3D Tech acrylic charm" class="charm-img" draggable="false">
+              <span class="charm-tooltip">06 / 3D TECH</span>
+            </div>
+
+            <!-- Charm 05: Illustration Cat Face Charm -->
+            <div class="charm-item" id="charm-illustration" data-id="illustration" data-index="4" data-name="Illustration & Characters" data-resting="36" role="button" tabindex="0" aria-label="Illustration Charm">
+              <img src="assets/charm-illustration-05.png" alt="Yellow tiger cat face illustration charm" class="charm-img" draggable="false">
+              <span class="charm-tooltip">05 / ILLUSTRATION</span>
+            </div>
+
+            <!-- Charm 04: Photoworks Charm -->
+            <div class="charm-item" id="charm-photoworks" data-id="photoworks" data-index="3" data-name="Photoworks & Rendering" data-resting="16" role="button" tabindex="0" aria-label="Photoworks Charm">
+              <img src="assets/charm-photoworks-04.png" alt="Embossed white Photoworks charm" class="charm-img" draggable="false">
+              <span class="charm-tooltip">04 / PHOTOWORKS</span>
+            </div>
+
+            <!-- Charm 03: Editorial 03 Tag Charm -->
+            <div class="charm-item" id="charm-editorial" data-id="editorial" data-index="2" data-name="Editorial Design" data-resting="6" role="button" tabindex="0" aria-label="Editorial Charm">
+              <img src="assets/charm-editorial-03.png" alt="Frosted grid acrylic Editorial 03 charm" class="charm-img" draggable="false">
+              <span class="charm-tooltip">03 / EDITORIAL</span>
+            </div>
+
+            <!-- Charm 02: 02 Branding Motel Keytag Charm -->
+            <div class="charm-item" id="charm-branding" data-id="branding" data-index="1" data-name="Brand Systems" data-resting="-10" role="button" tabindex="0" aria-label="Branding Charm">
+              <img src="assets/charm-branding-02.png" alt="White motel tag 02 Branding Works charm" class="charm-img" draggable="false">
+              <span class="charm-tooltip">02 / BRANDING</span>
+            </div>
+
+            <!-- Charm 01: Motion 01 Neon Yellow Triangle Charm (Front layer) -->
+            <div class="charm-item active-charm" id="charm-motion" data-id="motion" data-index="0" data-name="Motion Design" data-resting="-26" role="button" tabindex="0" aria-label="Motion Charm">
+              <img src="assets/charm-motion-01.png" alt="Yellow translucent acrylic Motion 01 charm" class="charm-img" draggable="false">
+              <span class="charm-tooltip">01 / MOTION</span>
+            </div>
+
+          </div>
+
+          <!-- Pivot Indicator Dot (Subtle technical crosshair) -->
+          <div class="pivot-pin" aria-hidden="true"></div>
+        </div>
+
+        <!-- Dynamic Ambient Floor Shadow (Reacts to Floating) -->
+        <div class="keychain-ambient-shadow" id="keychainShadow" aria-hidden="true"></div>
+      </div>
+
+      <!-- Bottom Explore Scroll Trigger -->
+      <a href="#dossier" class="scroll-explore" id="scrollExploreLink" aria-label="Scroll down to explore works">
+        <span class="explore-text">SCROLL TO EXPLORE</span>
+        <div class="explore-arrow">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+      </a>
+    </section>
+
+    <!-- SECTION 2: THE CLAMP DOSSIER / TECHNICAL SPEC SHEET (Yellow Board) -->
+    <section class="dossier-section" id="dossier" aria-label="Studio Dossier & Discipline Spec">
+      <div class="dossier-mat" id="dossierMat">
+        
+        <!-- Mat Grid & Coordinate Markings -->
+        <div class="mat-technical-grid" aria-hidden="true">
+          <span class="corner-cross top-left">+</span>
+          <span class="corner-cross top-right">+</span>
+          <span class="corner-cross bottom-left">+</span>
+          <span class="corner-cross bottom-right">+</span>
+          <div class="ruler-x"></div>
+          <div class="ruler-y"></div>
+          <div class="spec-pin-hole hole-1"></div>
+          <div class="spec-pin-hole hole-2"></div>
+          <div class="spec-pin-hole hole-3"></div>
+          <div class="spec-pin-hole hole-4"></div>
+        </div>
+
+        <div class="dossier-content">
+          <!-- Left: Physical Charm Rest Mount -->
+          <div class="charm-mount-zone" id="charmMountZone" title="Active charm specification">
+            <div class="mount-plate">
+              <img src="assets/charm-editorial-03.png" alt="Active Charm Resting on Spec Sheet" id="pinnedCharmImg" class="pinned-charm-img">
+              <span class="mount-label">SPEC NO. 03 / ACRYLIC</span>
+            </div>
+          </div>
+
+          <!-- Right: Editorial Type & Dynamic Statement -->
+          <div class="dossier-body">
+            <div class="dossier-meta-header">
+              <span class="meta-tag">DOSSIER REF // 2026.04</span>
+              <span class="meta-coords">37.7749° N, 122.4194° W</span>
+            </div>
+
+            <h1 class="dossier-title">
+              <span class="title-lead">Clamp</span>
+              <span class="title-sub">does</span>
+              <span class="title-handwritten" id="handwrittenDiscipline">editorial design</span>
+            </h1>
+
+            <p class="dossier-description">
+              An enthusiastic and multifaceted visual practice. We combine motion direction, tactile 3D physical modeling, graphic editorial systems, and computational creative code to deliver visual universes that defy convention.
+            </p>
+
+            <!-- Discipline Switcher Buttons -->
+            <div class="discipline-pills" role="tablist" aria-label="Discipline Selector">
+              <button class="d-pill" data-discipline="motion" data-charm="assets/charm-motion-01.png" role="tab" aria-selected="false">MOTION</button>
+              <button class="d-pill" data-discipline="branding" data-charm="assets/charm-branding-02.png" role="tab" aria-selected="false">BRANDING</button>
+              <button class="d-pill active" data-discipline="editorial" data-charm="assets/charm-editorial-03.png" role="tab" aria-selected="true">EDITORIAL</button>
+              <button class="d-pill" data-discipline="photoworks" data-charm="assets/charm-photoworks-04.png" role="tab" aria-selected="false">PHOTOWORKS</button>
+              <button class="d-pill" data-discipline="illustration" data-charm="assets/charm-illustration-05.png" role="tab" aria-selected="false">ILLUSTRATION</button>
+              <button class="d-pill" data-discipline="3dtech" data-charm="assets/charm-3dtech-06.png" role="tab" aria-selected="false">3D TECH</button>
+            </div>
+
+            <!-- Studio Telemetry Grid -->
+            <div class="telemetry-bar">
+              <div class="telemetry-item">
+                <span class="t-key">CURRENTLY BASED IN</span>
+                <span class="t-val">SAMARINDA / SAN FRANCISCO</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="t-key">LOCAL TIME</span>
+                <span class="t-val font-mono" id="liveTimeClock">--:--:-- UTC</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="t-key">PIPELINE STATUS</span>
+                <span class="t-val t-active">ACTIVE COMMISSIONING</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: FEATURED WORKS (FOLDER TAB ARCHITECTURE) -->
+    <section class="featured-section" id="featured" aria-label="Featured Projects">
+      
+      <!-- Angled Industrial Tab Header -->
+      <div class="folder-tabs-bar" role="tablist" aria-label="Project Selection Tabs">
+        <div class="tabs-container">
+          <button class="folder-tab active" id="tabWork1" data-work="0" role="tab" aria-selected="true" aria-controls="workPanel0">
+            <span class="tab-cutout"></span>
+            <span class="tab-index">01</span>
+            <span class="tab-title">INTO THE ABYSS</span>
+          </button>
+          <button class="folder-tab" id="tabWork2" data-work="1" role="tab" aria-selected="false" aria-controls="workPanel1">
+            <span class="tab-cutout"></span>
+            <span class="tab-index">02</span>
+            <span class="tab-title">AUTUMN THINGS</span>
+          </button>
+          <button class="folder-tab" id="tabWork3" data-work="2" role="tab" aria-selected="false" aria-controls="workPanel2">
+            <span class="tab-cutout"></span>
+            <span class="tab-index">03</span>
+            <span class="tab-title">BRAND SYSTEM 02</span>
+          </button>
+          <button class="folder-tab" id="tabWork4" data-work="3" role="tab" aria-selected="false" aria-controls="workPanel3">
+            <span class="tab-cutout"></span>
+            <span class="tab-index">04</span>
+            <span class="tab-title">EDITORIAL SPEC</span>
+          </button>
+        </div>
+
+        <div class="tabs-action">
+          <a href="#archive" class="btn-see-archive">
+            <span>SEE ALL WORKS (24)</span>
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- WORK PANELS CONTAINER -->
+      <div class="work-panels-wrapper">
+        
+        <!-- PANEL 0: INTO THE ABYSS -->
+        <article class="work-panel active" id="workPanel0" role="tabpanel" aria-labelledby="tabWork1">
+          <div class="panel-header-spec">
+            <div class="spec-left">
+              <span class="spec-num">FEATURED WORK 01</span>
+              <h2 class="spec-heading">Into the Abyss: 3D Character &amp; Environment Animation</h2>
+            </div>
+            <div class="spec-right">
+              <div class="spec-tags">
+                <span class="spec-tag">2025</span>
+                <span class="spec-tag highlight">3D TECH WORKS</span>
+                <span class="spec-tag">TEXTURING</span>
+                <span class="spec-tag">3D ANIMATION</span>
+                <span class="spec-tag">3D MODELING</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-layout">
+            <!-- Left Metadata Column -->
+            <div class="panel-sidebar">
+              <p class="panel-bio">
+                Developed an in-depth 3D animated character and deep-sea submarine environment with a vintage brass diver aesthetic. Executing the entire 3D animation pipeline: concept exploration, hard-surface subdivision modeling, procedural patina texturing, custom rigging, and volumetric particle lighting.
+              </p>
+              
+              <div class="sidebar-details">
+                <div class="detail-row">
+                  <span class="detail-label">CLIENT / CONTEXT</span>
+                  <span class="detail-val">Autonomous Lab Series</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">DISCIPLINE</span>
+                  <span class="detail-val">Cinematic 3D &amp; Lighting</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">SOFTWARE</span>
+                  <span class="detail-val font-mono">Blender 4.2 / Substance 3D / Cycles</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">TIMELINE</span>
+                  <span class="detail-val">6 Weeks Concept-to-Comp</span>
+                </div>
+              </div>
+
+              <div class="sidebar-actions">
+                <button class="btn-inspect-spec" data-work-index="0">
+                  <span>INSPECT SPEC &amp; ASSETS</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Center Cinematic Viewport -->
+            <div class="panel-viewport">
+              <div class="viewport-frame" id="viewport0">
+                <!-- Main Media (Supports image / video playback) -->
+                <div class="media-container" id="mediaContainer0">
+                  <img src="assets/work-abyss-main.jpg" alt="Diver with glowing specimen tank inside submersible chamber" class="viewport-img active-media" id="viewImg0">
+                  <video src="assets/video-tech3d.mp4" class="viewport-video hidden" id="viewVideo0" loop muted playsinline></video>
+                </div>
+
+                <!-- View Mode Controls Overlay -->
+                <div class="viewport-controls">
+                  <button class="view-mode-pill active" data-mode="render" data-panel="0">FINAL COMP</button>
+                  <button class="view-mode-pill" data-mode="video" data-panel="0">
+                    <span class="play-indicator">▶</span> TURNTABLE VIDEO
+                  </button>
+                  <button class="view-mode-pill" data-mode="sub" data-panel="0">WIRE &amp; ASSETS</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Asset Matrix -->
+            <div class="panel-matrix">
+              <h3 class="matrix-title">ASSET BREAKDOWN</h3>
+              <div class="matrix-grid">
+                <div class="matrix-card active" data-img="assets/work-abyss-main.jpg" data-mode="render" data-panel="0">
+                  <img src="assets/work-abyss-main.jpg" alt="Final Composite">
+                  <span class="card-caption">01. COMP</span>
+                </div>
+                <div class="matrix-card" data-img="assets/work-abyss-sub1.jpg" data-mode="sub" data-panel="0">
+                  <img src="assets/work-abyss-sub1.jpg" alt="Equipment Grid">
+                  <span class="card-caption">02. PROPS</span>
+                </div>
+                <div class="matrix-card" data-img="assets/archive-06.webp" data-mode="sub" data-panel="0">
+                  <img src="assets/archive-06.webp" alt="Character Bust">
+                  <span class="card-caption">03. BUST</span>
+                </div>
+                <div class="matrix-card" data-video="assets/video-tech3d.mp4" data-mode="video" data-panel="0">
+                  <div class="card-video-thumb">
+                    <span class="video-play-badge">▶</span>
+                  </div>
+                  <span class="card-caption">04. MOTION</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PANEL 1: AUTUMN THINGS -->
+        <article class="work-panel" id="workPanel1" role="tabpanel" aria-labelledby="tabWork2">
+          <div class="panel-header-spec">
+            <div class="spec-left">
+              <span class="spec-num">FEATURED WORK 02</span>
+              <h2 class="spec-heading">Autumn Things: Painterly 3D Texture &amp; Motion Series</h2>
+            </div>
+            <div class="spec-right">
+              <div class="spec-tags">
+                <span class="spec-tag">2024</span>
+                <span class="spec-tag highlight">MOTION WORKS</span>
+                <span class="spec-tag">MOTION POSTER</span>
+                <span class="spec-tag">3D MODELING</span>
+                <span class="spec-tag">3D TEXTURING</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-layout">
+            <div class="panel-sidebar">
+              <p class="panel-bio">
+                A tactile project focused on creating a painterly faux-2D oil painting aesthetic inside a 3D environment. Using hand-painted stylized textures, custom normal map displacement, and warm lighting palettes to celebrate autumnal culinary rituals.
+              </p>
+              
+              <div class="sidebar-details">
+                <div class="detail-row">
+                  <span class="detail-label">CLIENT / CONTEXT</span>
+                  <span class="detail-val">Autumn Seasonal Anthology</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">DISCIPLINE</span>
+                  <span class="detail-val">Stylized 3D &amp; Motion Loop</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">SOFTWARE</span>
+                  <span class="detail-val font-mono">Cinema 4D / Octane / After Effects</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">TECHNIQUE</span>
+                  <span class="detail-val">Faux Impasto Oil Shaders</span>
+                </div>
+              </div>
+
+              <div class="sidebar-actions">
+                <button class="btn-inspect-spec" data-work-index="1">
+                  <span>INSPECT SPEC &amp; ASSETS</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="panel-viewport">
+              <div class="viewport-frame" id="viewport1">
+                <div class="media-container" id="mediaContainer1">
+                  <img src="assets/work-autumn-main.jpg" alt="Autumn culinary collection: pumpkin latte, pie, and candles with oil paint texture" class="viewport-img active-media" id="viewImg1">
+                  <video src="assets/video-motion.mp4" class="viewport-video hidden" id="viewVideo1" loop muted playsinline></video>
+                </div>
+
+                <div class="viewport-controls">
+                  <button class="view-mode-pill active" data-mode="render" data-panel="1">STILL POSTER</button>
+                  <button class="view-mode-pill" data-mode="video" data-panel="1">
+                    <span class="play-indicator">▶</span> KINETIC LOOP
+                  </button>
+                  <button class="view-mode-pill" data-mode="sub" data-panel="1">TEXTURE PASS</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-matrix">
+              <h3 class="matrix-title">TEXTURE SUITE</h3>
+              <div class="matrix-grid">
+                <div class="matrix-card active" data-img="assets/work-autumn-main.jpg" data-mode="render" data-panel="1">
+                  <img src="assets/work-autumn-main.jpg" alt="Autumn Main">
+                  <span class="card-caption">01. HERO</span>
+                </div>
+                <div class="matrix-card" data-img="assets/work-autumn-sub1.jpg" data-mode="sub" data-panel="1">
+                  <img src="assets/work-autumn-sub1.jpg" alt="Pie Texture Detail">
+                  <span class="card-caption">02. TEXTURE</span>
+                </div>
+                <div class="matrix-card" data-img="assets/archive-01.webp" data-mode="sub" data-panel="1">
+                  <img src="assets/archive-01.webp" alt="Pumpkin Pie Detail">
+                  <span class="card-caption">03. PIE</span>
+                </div>
+                <div class="matrix-card" data-video="assets/video-motion.mp4" data-mode="video" data-panel="1">
+                  <div class="card-video-thumb">
+                    <span class="video-play-badge">▶</span>
+                  </div>
+                  <span class="card-caption">04. MOTION</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PANEL 2: BRAND SYSTEM 02 -->
+        <article class="work-panel" id="workPanel2" role="tabpanel" aria-labelledby="tabWork3">
+          <div class="panel-header-spec">
+            <div class="spec-left">
+              <span class="spec-num">FEATURED WORK 03</span>
+              <h2 class="spec-heading">Motel Keytag &amp; Tactile Brand Identity System</h2>
+            </div>
+            <div class="spec-right">
+              <div class="spec-tags">
+                <span class="spec-tag">2026</span>
+                <span class="spec-tag highlight">BRANDING WORKS</span>
+                <span class="spec-tag">TACTILE IDENTITY</span>
+                <span class="spec-tag">MERCHANDISE</span>
+                <span class="spec-tag">3D PACKAGING</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-layout">
+            <div class="panel-sidebar">
+              <p class="panel-bio">
+                A physical-meets-digital brand identity system built around embossed acrylic keytags, retro hotel aesthetics, and precision industrial typography. Bridging tactile object design with dynamic responsive web interfaces.
+              </p>
+              
+              <div class="sidebar-details">
+                <div class="detail-row">
+                  <span class="detail-label">CLIENT</span>
+                  <span class="detail-val">Clamp Hospitality Labs</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">DISCIPLINE</span>
+                  <span class="detail-val">Brand Identity &amp; Physical Merch</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">OUTPUT</span>
+                  <span class="detail-val font-mono">Custom Keychains / Print / Web</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">STATUS</span>
+                  <span class="detail-val">Production Deployed</span>
+                </div>
+              </div>
+
+              <div class="sidebar-actions">
+                <button class="btn-inspect-spec" data-work-index="2">
+                  <span>INSPECT SPEC &amp; ASSETS</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="panel-viewport">
+              <div class="viewport-frame" id="viewport2">
+                <div class="media-container" id="mediaContainer2">
+                  <img src="assets/work-branding-main.jpg" alt="Tactile brand identity with motel keytag and packaging" class="viewport-img active-media" id="viewImg2">
+                  <video src="assets/video-branding.mp4" class="viewport-video hidden" id="viewVideo2" loop muted playsinline></video>
+                </div>
+
+                <div class="viewport-controls">
+                  <button class="view-mode-pill active" data-mode="render" data-panel="2">HERO SPEC</button>
+                  <button class="view-mode-pill" data-mode="video" data-panel="2">
+                    <span class="play-indicator">▶</span> BRAND MOTION
+                  </button>
+                  <button class="view-mode-pill" data-mode="sub" data-panel="2">KEYTAG SYSTEM</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-matrix">
+              <h3 class="matrix-title">IDENTITY ASSETS</h3>
+              <div class="matrix-grid">
+                <div class="matrix-card active" data-img="assets/work-branding-main.jpg" data-mode="render" data-panel="2">
+                  <img src="assets/work-branding-main.jpg" alt="Brand System">
+                  <span class="card-caption">01. POSTER</span>
+                </div>
+                <div class="matrix-card" data-img="assets/charm-branding-02.png" data-mode="sub" data-panel="2">
+                  <img src="assets/charm-branding-02.png" alt="Motel Keytag 3D Model">
+                  <span class="card-caption">02. KEYTAG</span>
+                </div>
+                <div class="matrix-card" data-img="assets/archive-04.webp" data-mode="sub" data-panel="2">
+                  <img src="assets/archive-04.webp" alt="Graphic Poster">
+                  <span class="card-caption">03. POSTER</span>
+                </div>
+                <div class="matrix-card" data-video="assets/video-branding.mp4" data-mode="video" data-panel="2">
+                  <div class="card-video-thumb">
+                    <span class="video-play-badge">▶</span>
+                  </div>
+                  <span class="card-caption">04. TEASER</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PANEL 3: EDITORIAL SPEC -->
+        <article class="work-panel" id="workPanel3" role="tabpanel" aria-labelledby="tabWork4">
+          <div class="panel-header-spec">
+            <div class="spec-left">
+              <span class="spec-num">FEATURED WORK 04</span>
+              <h2 class="spec-heading">Flavors of Indonesia: Illustrated Culinary Manifesto</h2>
+            </div>
+            <div class="spec-right">
+              <div class="spec-tags">
+                <span class="spec-tag">2025</span>
+                <span class="spec-tag highlight">EDITORIAL WORKS</span>
+                <span class="spec-tag">BOOK DESIGN</span>
+                <span class="spec-tag">TYPOGRAPHY</span>
+                <span class="spec-tag">PRINT MATRIX</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-layout">
+            <div class="panel-sidebar">
+              <p class="panel-bio">
+                A rich typographic and visual cookbook exploring the vibrant archipelago flavors of Indonesia. Combining structured modular layouts, warm heritage packaging palettes, retro dish illustrations, and technical recipe diagrams.
+              </p>
+              
+              <div class="sidebar-details">
+                <div class="detail-row">
+                  <span class="detail-label">PROJECT</span>
+                  <span class="detail-val">Flavors of Indonesia Book</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">DISCIPLINE</span>
+                  <span class="detail-val">Editorial, Layout &amp; Binding</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">PAGES</span>
+                  <span class="detail-val font-mono">196 Pages Hardcover</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">PUBLICATION</span>
+                  <span class="detail-val">Independent Press</span>
+                </div>
+              </div>
+
+              <div class="sidebar-actions">
+                <button class="btn-inspect-spec" data-work-index="3">
+                  <span>INSPECT SPEC &amp; ASSETS</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="panel-viewport">
+              <div class="viewport-frame" id="viewport3">
+                <div class="media-container" id="mediaContainer3">
+                  <img src="assets/work-editorial-main.jpg" alt="Flavors of Indonesia illustrated editorial book spreads" class="viewport-img active-media" id="viewImg3">
+                  <video src="assets/video-tech3d.mp4" class="viewport-video hidden" id="viewVideo3" loop muted playsinline></video>
+                </div>
+
+                <div class="viewport-controls">
+                  <button class="view-mode-pill active" data-mode="render" data-panel="3">BOOK SPREADS</button>
+                  <button class="view-mode-pill" data-mode="sub" data-panel="3">COVER MATRIX</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-matrix">
+              <h3 class="matrix-title">PRINT SPEC</h3>
+              <div class="matrix-grid">
+                <div class="matrix-card active" data-img="assets/work-editorial-main.jpg" data-mode="render" data-panel="3">
+                  <img src="assets/work-editorial-main.jpg" alt="Editorial Spreads">
+                  <span class="card-caption">01. SPREAD</span>
+                </div>
+                <div class="matrix-card" data-img="assets/archive-05.webp" data-mode="sub" data-panel="3">
+                  <img src="assets/archive-05.webp" alt="Bangkok Poster">
+                  <span class="card-caption">02. TYPE</span>
+                </div>
+                <div class="matrix-card" data-img="assets/archive-03.webp" data-mode="sub" data-panel="3">
+                  <img src="assets/archive-03.webp" alt="Poster System">
+                  <span class="card-caption">03. POSTER</span>
+                </div>
+                <div class="matrix-card" data-img="assets/charm-editorial-03.png" data-mode="sub" data-panel="3">
+                  <img src="assets/charm-editorial-03.png" alt="Editorial Tag">
+                  <span class="card-caption">04. SPEC TAG</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4: THE ARCHIVE GRID (24 ITEMS WITH FILTERS & LIGHTBOX) -->
+    <section class="archive-section" id="archive" aria-label="Project Archive">
+      <div class="archive-header">
+        <div class="archive-title-group">
+          <h2 class="archive-heading">Archive</h2>
+          <p class="archive-subtext">
+            A CURATED STASH OF PLAYFUL, BITE-SIZED CREATIONS TOO SMALL FOR A PROJECT, BUT TOO GOOD TO KEEP HIDDEN.
+          </p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="archive-filters" role="group" aria-label="Archive Categories">
+          <button class="filter-btn active" data-filter="all">ALL (24)</button>
+          <button class="filter-btn" data-filter="3d">3D &amp; MOTION</button>
+          <button class="filter-btn" data-filter="branding">BRANDING</button>
+          <button class="filter-btn" data-filter="editorial">EDITORIAL</button>
+          <button class="filter-btn" data-filter="illustration">ILLUSTRATION</button>
+        </div>
+      </div>
+
+      <!-- The 24-Item Grid -->
+      <div class="archive-grid" id="archiveGrid">
+        
+        <!-- Items 01 - 24 -->
+        <div class="archive-card" data-category="3d" data-index="1" data-title="Baked Pumpkin Delight" data-year="2024" data-desc="Procedural pie crust and glossy impasto glaze rendering in Octane.">
+          <div class="card-frame">
+            <span class="card-num">01</span>
+            <img src="assets/archive-01.webp" alt="Baked Pumpkin Delight" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Pumpkin Pie 3D</span>
+              <span class="overlay-tag">3D TEXTURE</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="3d" data-index="2" data-title="Planets Index: Sun &amp; Venus" data-year="2024" data-desc="Procedural celestial volumetric atmospheres and solar flare simulations.">
+          <div class="card-frame">
+            <span class="card-num">02</span>
+            <img src="assets/archive-02.webp" alt="Planets Index: Sun and Venus" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Planets Index</span>
+              <span class="overlay-tag">VOLUMETRIC</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="editorial" data-index="3" data-title="Working Late Designer" data-year="2025" data-desc="Retro CRT cyber-aesthetic poster design with holographic borders.">
+          <div class="card-frame">
+            <span class="card-num">03</span>
+            <img src="assets/archive-03.webp" alt="Working Late Designer" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Late Night Work</span>
+              <span class="overlay-tag">POSTER</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="editorial" data-index="4" data-title="Volumetric Monogram Study" data-year="2024" data-desc="Chrome typography on silver crushed fabric background.">
+          <div class="card-frame">
+            <span class="card-num">04</span>
+            <img src="assets/archive-04.webp" alt="Volumetric Monogram Study" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Silver Type</span>
+              <span class="overlay-tag">TYPOGRAPHY</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="branding" data-index="5" data-title="Bangkok Heritage Poster" data-year="2024" data-desc="Bold block print typography celebrating southeast Asian architectural silhouettes.">
+          <div class="card-frame">
+            <span class="card-num">05</span>
+            <img src="assets/archive-05.webp" alt="Bangkok Heritage Poster" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Bangkok Type</span>
+              <span class="overlay-tag">BRANDING</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="3d" data-index="6" data-title="Red Hot Devil Lollipop" data-year="2025" data-desc="Glass shader subsurface scattering experiment with glowing amber sugar core.">
+          <div class="card-frame">
+            <span class="card-num">06</span>
+            <img src="assets/archive-06.webp" alt="Red Hot Devil Lollipop" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Devil Candy</span>
+              <span class="overlay-tag">GLASS 3D</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="branding" data-index="7" data-title="Vinyl Audio Disc Master" data-year="2024" data-desc="Metallic micro-groove refraction and gold stamped center label.">
+          <div class="card-frame">
+            <span class="card-num">07</span>
+            <img src="assets/archive-07.webp" alt="Vinyl Audio Disc Master" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Vinyl Record</span>
+              <span class="overlay-tag">AUDIO ART</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="3d" data-index="8" data-title="Retro Monitor CRT Specimen" data-year="2025" data-desc="Phosphor scanline decay effect mapped to 3D vintage terminal monitor.">
+          <div class="card-frame">
+            <span class="card-num">08</span>
+            <img src="assets/archive-08.webp" alt="Retro Monitor CRT Specimen" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">CRT Display</span>
+              <span class="overlay-tag">HARDWARE</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="illustration" data-index="9" data-title="Heirloom Gourd Renders" data-year="2024" data-desc="Textured rustic produce with oil paint brushstroke normals.">
+          <div class="card-frame">
+            <span class="card-num">09</span>
+            <img src="assets/archive-09.webp" alt="Heirloom Gourd Renders" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Heirloom Squash</span>
+              <span class="overlay-tag">FAUX OIL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="illustration" data-index="10" data-title="Citrus Symphony" data-year="2024" data-desc="Playful bright pop citrus fruits and floating juice orbs.">
+          <div class="card-frame">
+            <span class="card-num">10</span>
+            <img src="assets/archive-10.webp" alt="Citrus Symphony" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Citrus Symphony</span>
+              <span class="overlay-tag">POP ART</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="editorial" data-index="11" data-title="Tokyo Night Grid Matrix" data-year="2025" data-desc="Complex typographic newspaper layout with neon sign photography.">
+          <div class="card-frame">
+            <span class="card-num">11</span>
+            <img src="assets/archive-11.webp" alt="Tokyo Night Grid Matrix" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Tokyo Matrix</span>
+              <span class="overlay-tag">EDITORIAL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="3d" data-index="12" data-title="Fallen Forest Feast" data-year="2024" data-desc="Warm candlelight illumination on autumn forest harvest table.">
+          <div class="card-frame">
+            <span class="card-num">12</span>
+            <img src="assets/archive-12.webp" alt="Fallen Forest Feast" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Forest Table</span>
+              <span class="overlay-tag">LIGHTING</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="branding" data-index="13" data-title="Streetwear Lookbook SS25" data-year="2025" data-desc="Acid green and metallic silver seasonal collection catalogue.">
+          <div class="card-frame">
+            <span class="card-num">13</span>
+            <img src="assets/archive-13.webp" alt="Streetwear Lookbook" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">SS25 Lookbook</span>
+              <span class="overlay-tag">FASHION</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="illustration" data-index="14" data-title="Valentine Bear Toy" data-year="2024" data-desc="Fluffy 3D hair simulation and nostalgic packaging artwork.">
+          <div class="card-frame">
+            <span class="card-num">14</span>
+            <img src="assets/archive-14.webp" alt="Valentine Bear Toy" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Valentine Plush</span>
+              <span class="overlay-tag">3D CHARACTER</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="branding" data-index="15" data-title="Monochrome Editorial Identity" data-year="2025" data-desc="High-fashion monochrome portrait photography and Swiss grid layouts.">
+          <div class="card-frame">
+            <span class="card-num">15</span>
+            <img src="assets/archive-15.webp" alt="Monochrome Editorial Identity" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Swiss Editorial</span>
+              <span class="overlay-tag">IDENTITY</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="3d" data-index="16" data-title="Confectionery Mould Study" data-year="2025" data-desc="Sugar glass molded toys with internal refraction caustic patterns.">
+          <div class="card-frame">
+            <span class="card-num">16</span>
+            <img src="assets/archive-16.webp" alt="Confectionery Mould Study" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Moulded Sugar</span>
+              <span class="overlay-tag">CAUSTICS</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="branding" data-index="17" data-title="Capsule Collection Promo" data-year="2025" data-desc="Moody film camera photography for limited run apparel drop.">
+          <div class="card-frame">
+            <span class="card-num">17</span>
+            <img src="assets/archive-17.webp" alt="Capsule Collection Promo" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Capsule Drop</span>
+              <span class="overlay-tag">APPAREL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="branding" data-index="18" data-title="RedMed Heart Tote" data-year="2025" data-desc="Physical merchandise embroidery and silk-screen bag prototype.">
+          <div class="card-frame">
+            <span class="card-num">18</span>
+            <img src="assets/archive-18.webp" alt="RedMed Heart Tote" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">RedMed Tote</span>
+              <span class="overlay-tag">MERCH</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="3d" data-index="19" data-title="Golden Acorn Bell" data-year="2024" data-desc="Sculpted timber acorn cap with warm metallic copper bottom.">
+          <div class="card-frame">
+            <span class="card-num">19</span>
+            <img src="assets/archive-19.webp" alt="Golden Acorn Bell" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Acorn Bell</span>
+              <span class="overlay-tag">SCULPT</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="branding" data-index="20" data-title="Clamp Red Merch Array" data-year="2026" data-desc="Complete studio packaging kit: coffee cups, tape, stickers, pins.">
+          <div class="card-frame">
+            <span class="card-num">20</span>
+            <img src="assets/archive-20.webp" alt="Clamp Red Merch Array" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Studio Merch</span>
+              <span class="overlay-tag">SYSTEM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="3d" data-index="21" data-title="Silk Banner Simulation" data-year="2025" data-desc="Dynamic wind cloth simulation with custom embroidered satin shaders.">
+          <div class="card-frame">
+            <span class="card-num">21</span>
+            <img src="assets/archive-21.webp" alt="Silk Banner Simulation" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Silk Banner</span>
+              <span class="overlay-tag">CLOTH SIM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="branding" data-index="22" data-title="Matchbox Kit Series" data-year="2025" data-desc="Hot-foil printed matchboxes with custom safety strike sandpaper panels.">
+          <div class="card-frame">
+            <span class="card-num">22</span>
+            <img src="assets/archive-22.webp" alt="Matchbox Kit Series" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Matchboxes</span>
+              <span class="overlay-tag">PACKAGING</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="editorial" data-index="23" data-title="Archipelago Heritage Cards" data-year="2025" data-desc="Gold embossed talisman cards depicting mythical folklore deities.">
+          <div class="card-frame">
+            <span class="card-num">23</span>
+            <img src="assets/archive-23.webp" alt="Archipelago Heritage Cards" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Talisman Cards</span>
+              <span class="overlay-tag">PRINT MATRIX</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="archive-card" data-category="branding" data-index="24" data-title="Visual Lab Identity" data-year="2026" data-desc="Tactile signage and high-visibility studio stationery system.">
+          <div class="card-frame">
+            <span class="card-num">24</span>
+            <img src="assets/archive-24.jpg" alt="Visual Lab Identity" loading="lazy">
+            <div class="card-overlay">
+              <span class="overlay-title">Visual Lab</span>
+              <span class="overlay-tag">IDENTITY</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 5: STUDIO / CAPABILITIES & MANIFESTO -->
+    <section class="studio-section" id="studio" aria-label="About Clamp Studio">
+      <div class="studio-grid">
+        <div class="studio-col-left">
+          <span class="sec-label">04 // STUDIO PROFILE</span>
+          <h2 class="studio-heading">
+            Physical tactile sensibilities engineered into kinetic digital form.
+          </h2>
+          <p class="studio-p">
+            Clamp is an independent design laboratory directed by motion designers, 3D artists, and creative technologists. We reject sterile minimalism in favor of visceral textures, mechanical charms, physical weight, and micro-interactions that leave a permanent impression.
+          </p>
+
+          <div class="studio-metrics">
+            <div class="metric-card">
+              <span class="metric-num">10+</span>
+              <span class="metric-lbl">Years Exploring 3D &amp; Motion</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-num">40+</span>
+              <span class="metric-lbl">Brand Universes Launched</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-num">9</span>
+              <span class="metric-lbl">International Design Nominations</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="studio-col-right">
+          <h3 class="capabilities-title">CORE CAPABILITIES</h3>
+          <div class="capabilities-list">
+            <div class="cap-item">
+              <span class="cap-index">01</span>
+              <div class="cap-body">
+                <h4 class="cap-name">Motion Direction &amp; Kinetic Systems</h4>
+                <p class="cap-desc">Physics-based interaction, title sequences, 3D character animation, kinetic typographic branding, and dynamic video loops.</p>
+              </div>
+            </div>
+
+            <div class="cap-item">
+              <span class="cap-index">02</span>
+              <div class="cap-body">
+                <h4 class="cap-name">3D Art Direction &amp; Industrial Modeling</h4>
+                <p class="cap-desc">Hard-surface props, tactile materials, procedural shaders, subsurface scattering, hard plastic/acrylic optics, and cinematic lighting.</p>
+              </div>
+            </div>
+
+            <div class="cap-item">
+              <span class="cap-index">03</span>
+              <div class="cap-body">
+                <h4 class="cap-name">Brand Identity &amp; Physical Merchandise</h4>
+                <p class="cap-desc">Tactile stationery, embossed keytags, apparel, packaging, spatial signage, and comprehensive visual style guides.</p>
+              </div>
+            </div>
+
+            <div class="cap-item">
+              <span class="cap-index">04</span>
+              <div class="cap-body">
+                <h4 class="cap-name">Creative Engineering &amp; Interactive Web</h4>
+                <p class="cap-desc">High-performance canvas physics, WebGL shaders, responsive fluid typography, and bespoke experimental web portfolios.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: MASSIVE INDUSTRIAL FOOTER / CONTACT -->
+    <footer class="site-footer" id="contact" aria-label="Studio Footer & Contact">
+      
+      <!-- Top Action Bar -->
+      <div class="footer-top-bar">
+        <div class="f-col-status">
+          <span class="dot-live"></span>
+          <span>AVAILABLE FOR NEW PROJECTS // 2026</span>
+        </div>
+        <div class="f-col-coords font-mono">
+          <span>LAT: 37.7749° N · LON: 122.4194° W</span>
+        </div>
+        <div class="f-col-backtop">
+          <a href="#hero" class="back-to-top" id="backToTopBtn">
+            <span>BACK TO TOP</span>
+            <span class="arrow-up">↑</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Giant Interactive Marquee Typography -->
+      <div class="footer-marquee" aria-hidden="true">
+        <div class="marquee-track" id="marqueeTrack">
+          <span class="marquee-text">CLAMPSTUDIOWORKS — CLAMPSTUDIOWORKS — CLAMPSTUDIOWORKS — CLAMPSTUDIOWORKS — </span>
+        </div>
+      </div>
+
+      <!-- Main Footer Body -->
+      <div class="footer-body">
+        <div class="footer-contact-block">
+          <span class="contact-eyebrow">HAVE A VISION? LET'S TALK.</span>
+          <div class="email-copy-wrap">
+            <a href="mailto:hello@clamp.studio" class="huge-email" id="emailLink">hello@clamp.studio</a>
+            <button class="copy-email-btn" id="copyEmailBtn" aria-label="Copy email address to clipboard">
+              <span id="copyBtnText">COPY EMAIL</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="footer-links-grid">
+          <div class="links-col">
+            <span class="links-header">CHANNELS</span>
+            <ul class="footer-nav">
+              <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">INSTAGRAM <span class="ext">↗</span></a></li>
+              <li><a href="https://x.com" target="_blank" rel="noopener noreferrer">TWITTER / X <span class="ext">↗</span></a></li>
+              <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LINKEDIN <span class="ext">↗</span></a></li>
+              <li><a href="https://github.com" target="_blank" rel="noopener noreferrer">GITHUB <span class="ext">↗</span></a></li>
+            </ul>
+          </div>
+
+          <div class="links-col">
+            <span class="links-header">EXPLORE</span>
+            <ul class="footer-nav">
+              <li><a href="#hero">KEYCHAIN LAB</a></li>
+              <li><a href="#dossier">SPEC DOSSIER</a></li>
+              <li><a href="#featured">FEATURED WORKS</a></li>
+              <li><a href="#archive">THE ARCHIVE</a></li>
+            </ul>
+          </div>
+
+          <div class="links-col">
+            <span class="links-header">INDEX</span>
+            <ul class="footer-nav">
+              <li><a href="#studio">CAPABILITIES</a></li>
+              <li><a href="#" id="openResumeLink">RESUME / CV</a></li>
+              <li><a href="#" id="openLegalLink">STUDIO SPEC</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright Sub-Footer -->
+      <div class="footer-bottom-bar">
+        <p class="copyright-text">
+          &copy; 2026 CLAMP STUDIO · ALL RIGHTS RESERVED. CRAFTED WITH KINETIC CODE &amp; PHYSICAL INSPIRATION.
+        </p>
+        <div class="colophon-text font-mono">
+          <span>FONT: SPACE GROTESK / FRAGMENT MONO</span>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- LIGHTBOX MODAL FOR ARCHIVE ITEMS -->
+  <dialog class="lightbox-dialog" id="archiveLightbox" aria-label="Project Preview Modal">
+    <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+    <div class="lightbox-card" role="document">
+      <button class="lightbox-close" id="lightboxCloseBtn" aria-label="Close dialog">&times;</button>
+      
+      <div class="lightbox-media-frame">
+        <img src="" alt="" id="lightboxImg" class="lightbox-main-img">
+      </div>
+
+      <div class="lightbox-info">
+        <div class="lb-header">
+          <span class="lb-number" id="lightboxNumber">#01</span>
+          <span class="lb-category" id="lightboxCategory">3D TECH</span>
+        </div>
+        <h3 class="lb-title" id="lightboxTitle">Project Title</h3>
+        <p class="lb-desc" id="lightboxDesc">Project detailed description and creative context.</p>
+        
+        <div class="lb-meta">
+          <div class="lb-meta-item">
+            <span class="lb-k">YEAR</span>
+            <span class="lb-v" id="lightboxYear">2025</span>
+          </div>
+          <div class="lb-meta-item">
+            <span class="lb-k">FORMAT</span>
+            <span class="lb-v">Archival Render</span>
+          </div>
+        </div>
+
+        <div class="lb-nav-buttons">
+          <button class="lb-nav-btn prev" id="lbPrevBtn">← PREVIOUS</button>
+          <button class="lb-nav-btn next" id="lbNextBtn">NEXT →</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- PROJECT SPEC DRAWER (SLIDE-OUT INSPECTOR) -->
+  <aside class="spec-drawer" id="specDrawer" aria-hidden="true" aria-label="Technical Specification Inspector">
+    <div class="drawer-header">
+      <div class="dh-title">
+        <span class="dh-badge">SPEC INSPECTOR</span>
+        <h3 id="drawerProjectTitle">Project Title</h3>
+      </div>
+      <button class="drawer-close" id="drawerCloseBtn" aria-label="Close Drawer">&times;</button>
+    </div>
+
+    <div class="drawer-body">
+      <div class="drawer-section">
+        <span class="ds-eyebrow">EXECUTIVE SUMMARY</span>
+        <p id="drawerSummary">Comprehensive breakdown of the production pipeline, technical challenges, and creative solutions.</p>
+      </div>
+
+      <div class="drawer-section">
+        <span class="ds-eyebrow">TECHNICAL PIPELINE</span>
+        <div class="spec-table" id="drawerPipelineTable">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <div class="drawer-section">
+        <span class="ds-eyebrow">TEXTURE PALETTE &amp; MATERIALS</span>
+        <div class="swatches-grid" id="drawerSwatches">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <div class="drawer-section">
+        <span class="ds-eyebrow">DELIVERABLES</span>
+        <ul class="deliverables-list" id="drawerDeliverables">
+          <!-- Populated dynamically -->
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Interactive Toast Notification -->
+  <div class="toast-notification" id="toastNotification" aria-live="polite">
+    <span class="toast-dot"></span>
+    <span class="toast-message" id="toastMessage">Copied to clipboard</span>
+  </div>
+
+  <!-- Custom Crosshair Cursor -->
+  <div class="custom-cursor" id="customCursor" aria-hidden="true">
+    <div class="cursor-crosshair"></div>
+    <div class="cursor-follower"></div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
