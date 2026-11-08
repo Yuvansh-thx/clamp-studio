@@ -52,17 +52,20 @@ Clone the repository and serve the files locally using any static web server:
 git clone https://github.com/Yuvansh-thx/clamp-studio.git
 cd clamp-studio
 
-# Start local server (Python 3)
-python3 -m http.server 3000
+# Start development server with Vite (recommended for HMR and mobile network access)
+npm install
+npm run dev
 
-# Or with Node.js
-npx serve .
+# Or with any static server
+python3 -m http.server 5175
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your web browser.
+Open [http://localhost:5175](http://localhost:5175) in your web browser.  
+To view on your phone or tablet on the same Wi-Fi, open the Network URL (e.g. `http://<your-ip>:5175`).
 
 ---
 
 ## 📄 License
 
 Crafted for creative portfolio and educational presentation. All creative works & assets © 2026 CLAMP Studio.
+

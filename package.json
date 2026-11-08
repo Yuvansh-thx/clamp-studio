@@ -1,0 +1,15 @@
+{
+  "name": "clamp-studio",
+  "version": "1.0.0",
+  "description": "CLAMP — Multidisciplinary Visual & Motion Design Studio",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5175 --host",
+    "start": "vite --port 5175 --host",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.4.5"
+  }
+}
